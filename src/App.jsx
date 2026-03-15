@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { SignUp, Login } from './pages'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
+import SiteLandingPage from './landingpage/SiteLandingPage'
 const App = () => {
   const [ token, setToken] = useState(false);
   if(token){
@@ -18,10 +19,12 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path={"/"} element={<Login setToken = {setToken} />} />
+        <Route path={"/"} element={<SiteLandingPage />} />
+        <Route path={"/login"} element={<Login setToken = {setToken} />} />
         <Route path={"/signup"} element={<SignUp />} />
-        {token ? <Route path={"/homepage"} element={<HomePage token = {token} />} /> : <Route path={"/homepage"} element={<Login setToken = {setToken} />} />}
+        {token ? <Route path={"/homepage"} element={<HomePage token = {token} />} /> : <Route path={"/homepage"} element={<SiteLandingPage />} />}
       </Routes>
+      
     </div>
   )
 }

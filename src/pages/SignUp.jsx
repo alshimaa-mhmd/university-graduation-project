@@ -57,7 +57,7 @@ alert("check your email for the confirmation link")
           submit
         </button>
       </form>
-      Already have an account ? <Link to="/">Login</Link>
+      Already have an account ? <Link to="/login">Login</Link>
     </div>
   )
 }

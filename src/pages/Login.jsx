@@ -43,13 +43,15 @@ navigate("/homepage")
 
 }
 
-  return (
+
+  
+return (
     <div>
       <form onSubmit={handleSubmit}>
         <input placeholder="email" name="email" type="email" onChange={handleChange} /> 
         <input placeholder="password" name="password" type="password" onChange={handleChange} /> 
         
-        <button type="submit" >
+        <button type="submit" className=" text-yellow-700" >
           submit
         </button>
       </form>
