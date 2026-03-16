@@ -75,12 +75,25 @@ button:focus-visible {
 } */
 
 
+/* .marquee {
+  overflow: hidden;
+  width: 100%;
+}*/
+
+.marquee-track {
+  display: flex;
+  width: 500px;
+  /* animation: marquee 20s linear infinite; */
+  background-color: aqua;
+
+} 
+
 @keyframes marquee {
-  0% {
-    transform: translateX(0%);
+  from {
+    transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(-100%);
   }
 }
 
