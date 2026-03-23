@@ -4,6 +4,22 @@
 body{
   /* overflow-x: hidden; */
 }
+
+button{
+  cursor: pointer;
+}
+.side-link{
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.side-link img{
+  width: 15px;
+  height: 15px;
+}
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

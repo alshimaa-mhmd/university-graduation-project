@@ -1,28 +1,37 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import FileDropZone from '../components/Filedropzone ';
+import React, { useState } from 'react'
+import SideNavBar from '../components/SideNavBar';
+import TopNavBar from '../components/TopNavBar';
+import Dashboard from './Dashboard';
+import DataUpload from './DataUpload';
+import Reports from './Reports';
+import Forcasting from './Forcasting';
 
 const HomePage = ({ token }) => {
 
-    let navigate = useNavigate();
-    
-    function handleLogout() {
-        sessionStorage.removeItem('token')
-        navigate('/')
-    }
+   const [navLink, setNavLink] = useState('dataUpload');
+
+   
 
   
  return (
-    <div>
-     <h3> Welcome , Team member {token.user.user_metadata.full_name}</h3>
-
-
+   <>
+    <div className='bg-[#E2E8F0] flex'>
+      <SideNavBar link = {navLink} setNavLink={setNavLink} token = {token}/>
+      <div className='flex flex-col gap-6 w-full'>
+         <TopNavBar link = {navLink} />
       
-      <FileDropZone onFilesChange={(files) => console.log(files)} />
-     <button onClick={handleLogout}>  
-        Logout
-     </button>
+      { navLink === 'dashboard' && <Dashboard />}
+      { navLink === 'dataUpload' && <DataUpload /> }
+      { navLink === 'reports' && <Reports /> }
+      { navLink === 'forcasting' && <Forcasting /> }
+     
+      
+     
+     
+     </div>
     </div>
+   
+    </>
  )
    
 }
