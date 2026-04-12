@@ -5,16 +5,16 @@ const TopNavBar = ( { link} ) => {
     <div className='flex  flex-wrap items-center justify-between p-6 h-14 w-full static top-0 right-0 mb-8'>
       <div>
         <h1 className='text-3xl font-bold'>
-          {link === 'dashboard' && 'Main Insights Dashboard'}
-          {link === 'dataUpload' && 'Data Upload & History'}
-          {link === 'reports' && 'Comparison Mode'}
-          {link === 'forcasting' && 'Future Trends & Forecasting'}
+          {link === 'overview' && 'Main Insights Dashboard'}
+          {link === 'upload hub' && 'Data Upload & History'}
+          {link === 'product deep dive' && 'Comparison Mode'}
+          {link === 'sales trends' && 'Future Trends & Forecasting'}
         </h1>
         <p className='text-[#64748B] my-2'>
-          {link === 'dashboard' && 'Real-time performance metrics for   '}
-          {link === 'dataUpload' && 'Manage your business datasets and monitor processing history.'}
-          {link === 'reports' && 'Analyze performance metrics across different fiscal periods.'}
-          {link === 'forcasting' && 'Leveraging Prophet and ARIMA models to project market trajectories based on historical performance cycles.'}
+          {link === 'overview' && 'Real-time performance metrics for   '}
+          {link === 'upload hub' && 'Manage your business datasets and monitor processing history.'}
+          {link === 'product deep dive' && 'Analyze performance metrics across different fiscal periods.'}
+          {link === 'sales trends' && 'Leveraging Prophet and ARIMA models to project market trajectories based on historical performance cycles.'}
 
         </p>
       </div>

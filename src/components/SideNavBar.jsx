@@ -28,17 +28,17 @@ const SideNavBar = ({ link, setNavLink, token }) => {
             LOGO
         </div>
 
-        <div className='side-link' onClick={() => handleLinkClick('dataUpload')}>
-            <img src={uploads} alt="home" className='w-5 h-5' /> <p>Data Upload</p>
+        <div className='side-link' onClick={() => handleLinkClick('upload hub')}>
+            <img src={uploads} alt="home" className='w-5 h-5' /> <p>Upload Hub</p>
         </div>
-        <div className='side-link' onClick={() => handleLinkClick('dashboard')}>
-            <img src={dashboard} alt="home" className='w-5 h-5' /> <p>Dashboard</p>
+        <div className='side-link' onClick={() => handleLinkClick('overview')}>
+            <img src={dashboard} alt="home" className='w-5 h-5' /> <p>Overview</p>
         </div>
-        <div className='side-link' onClick={() => handleLinkClick('reports')}>
-            <img src={reports} alt="home" className='w-5 h-5' /> <p>Reports</p>
+        <div className='side-link' onClick={() => handleLinkClick('product deep dive')}>
+            <img src={reports} alt="home" className='w-5 h-5' /> <p>Product Deep Dive</p>
         </div>
-        <div className='side-link' onClick={() => handleLinkClick('forcasting')}>
-            <img src={forcasting} alt="home" className='w-5 h-5' /> <p>Forcasting</p>
+        <div className='side-link' onClick={() => handleLinkClick('sales trends')}>
+            <img src={forcasting} alt="home" className='w-5 h-5' /> <p>Sales Trends</p>
         </div>
         <div className='side-link' onClick={() => handleLinkClick('settings')}>
             <img src={settings} alt="home" className='w-5 h-5' /> <p>Settings</p>

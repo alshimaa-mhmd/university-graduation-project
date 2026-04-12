@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-gray-500: #F2F4F6;
+  --color-black-500: #191C1E;
+}
 
 body{
   /* overflow-x: hidden; */

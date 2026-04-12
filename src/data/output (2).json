@@ -1,0 +1,661 @@
+{
+  "status": "success",
+  "cards": [
+    {
+      "id": "totalRevenue",
+      "label": "Total Revenue",
+      "value": 819718.0554000001,
+      "format": "currency"
+    },
+    {
+      "id": "totalProfit",
+      "label": "Total Profit",
+      "value": 98850.4266,
+      "format": "currency"
+    },
+    {
+      "id": "profitMarginPct",
+      "label": "Profit Margin %",
+      "value": 12.06,
+      "format": "percent"
+    },
+    {
+      "id": "totalOrders",
+      "label": "Total Orders",
+      "value": 8827,
+      "format": "number"
+    },
+    {
+      "id": "bestProduct",
+      "label": "Best Product",
+      "value": "Easy-staple paper",
+      "format": "text"
+    },
+    {
+      "id": "worstProduct",
+      "label": "Worst Product",
+      "value": "3.6 Cubic Foot Counter Height Office Refrigerator",
+      "format": "text"
+    }
+  ],
+  "charts": {
+    "salesOverTime": {
+      "type": "line",
+      "title": "Sales Over Time",
+      "xKey": "month",
+      "yKey": "revenue",
+      "yLabel": "Revenue ($)",
+      "data": [
+        {
+          "month": "2014-01",
+          "revenue": 5494.997
+        },
+        {
+          "month": "2014-02",
+          "revenue": 5367.814
+        },
+        {
+          "month": "2014-03",
+          "revenue": 4288.442
+        },
+        {
+          "month": "2014-04",
+          "revenue": 5544.2699999999995
+        },
+        {
+          "month": "2014-05",
+          "revenue": 7100.071
+        },
+        {
+          "month": "2014-06",
+          "revenue": 4521.453
+        },
+        {
+          "month": "2014-07",
+          "revenue": 7215.134
+        },
+        {
+          "month": "2014-08",
+          "revenue": 6820.4349999999995
+        },
+        {
+          "month": "2014-09",
+          "revenue": 3845.296
+        },
+        {
+          "month": "2014-10",
+          "revenue": 3380.411
+        },
+        {
+          "month": "2014-11",
+          "revenue": 6889.584
+        },
+        {
+          "month": "2014-12",
+          "revenue": 4943.2027
+        },
+        {
+          "month": "2015-01",
+          "revenue": 4349.286
+        },
+        {
+          "month": "2015-02",
+          "revenue": 5807.764
+        },
+        {
+          "month": "2015-03",
+          "revenue": 5426.745
+        },
+        {
+          "month": "2015-04",
+          "revenue": 3665.608
+        },
+        {
+          "month": "2015-05",
+          "revenue": 6394.276
+        },
+        {
+          "month": "2015-06",
+          "revenue": 5505.7022
+        },
+        {
+          "month": "2015-07",
+          "revenue": 5260.301
+        },
+        {
+          "month": "2015-08",
+          "revenue": 6444.607
+        },
+        {
+          "month": "2015-09",
+          "revenue": 7479.393
+        },
+        {
+          "month": "2015-10",
+          "revenue": 4368.58
+        },
+        {
+          "month": "2015-11",
+          "revenue": 6328.462
+        },
+        {
+          "month": "2015-12",
+          "revenue": 6043.919
+        },
+        {
+          "month": "2016-01",
+          "revenue": 6658.393
+        },
+        {
+          "month": "2016-02",
+          "revenue": 5802.855
+        },
+        {
+          "month": "2016-03",
+          "revenue": 9608.313
+        },
+        {
+          "month": "2016-04",
+          "revenue": 6541.111
+        },
+        {
+          "month": "2016-05",
+          "revenue": 11411.223
+        },
+        {
+          "month": "2016-06",
+          "revenue": 8189.621
+        },
+        {
+          "month": "2016-07",
+          "revenue": 4847.951
+        },
+        {
+          "month": "2016-08",
+          "revenue": 8211.261
+        },
+        {
+          "month": "2016-09",
+          "revenue": 4843.405
+        },
+        {
+          "month": "2016-10",
+          "revenue": 7513.774
+        },
+        {
+          "month": "2016-11",
+          "revenue": 8626.29
+        },
+        {
+          "month": "2016-12",
+          "revenue": 7440.435
+        },
+        {
+          "month": "2017-01",
+          "revenue": 11093.144
+        },
+        {
+          "month": "2017-02",
+          "revenue": 12387.152
+        },
+        {
+          "month": "2017-03",
+          "revenue": 11285.771
+        },
+        {
+          "month": "2017-04",
+          "revenue": 6716.825
+        },
+        {
+          "month": "2017-05",
+          "revenue": 9138.497
+        },
+        {
+          "month": "2017-06",
+          "revenue": 7264.249
+        },
+        {
+          "month": "2017-07",
+          "revenue": 10034.313
+        },
+        {
+          "month": "2017-08",
+          "revenue": 8367.298
+        },
+        {
+          "month": "2017-09",
+          "revenue": 10990.684
+        },
+        {
+          "month": "2017-10",
+          "revenue": 8446.263
+        },
+        {
+          "month": "2017-11",
+          "revenue": 7107.983
+        },
+        {
+          "month": "2017-12",
+          "revenue": 7287.786
+        }
+      ]
+    },
+    "profitOverTime": {
+      "type": "line",
+      "title": "Profit Over Time",
+      "xKey": "month",
+      "yKey": "profit",
+      "yLabel": "Profit ($)",
+      "data": [
+        {
+          "month": "2014-01",
+          "profit": 935.0709999999999
+        },
+        {
+          "month": "2014-02",
+          "profit": 1235.2847
+        },
+        {
+          "month": "2014-03",
+          "profit": -500.3613999999999
+        },
+        {
+          "month": "2014-04",
+          "profit": 1334.3722
+        },
+        {
+          "month": "2014-05",
+          "profit": 1257.6857
+        },
+        {
+          "month": "2014-06",
+          "profit": 483.695
+        },
+        {
+          "month": "2014-07",
+          "profit": -336.4271999999999
+        },
+        {
+          "month": "2014-08",
+          "profit": 574.5956
+        },
+        {
+          "month": "2014-09",
+          "profit": 633.607
+        },
+        {
+          "month": "2014-10",
+          "profit": 563.0782
+        },
+        {
+          "month": "2014-11",
+          "profit": 1205.0723
+        },
+        {
+          "month": "2014-12",
+          "profit": 411.0877
+        },
+        {
+          "month": "2015-01",
+          "profit": 991.1654
+        },
+        {
+          "month": "2015-02",
+          "profit": 118.15720000000002
+        },
+        {
+          "month": "2015-03",
+          "profit": 667.1956
+        },
+        {
+          "month": "2015-04",
+          "profit": 838.9739000000001
+        },
+        {
+          "month": "2015-05",
+          "profit": -436.7342
+        },
+        {
+          "month": "2015-06",
+          "profit": 688.4619
+        },
+        {
+          "month": "2015-07",
+          "profit": -661.2411000000002
+        },
+        {
+          "month": "2015-08",
+          "profit": 1018.3413
+        },
+        {
+          "month": "2015-09",
+          "profit": 1315.4513
+        },
+        {
+          "month": "2015-10",
+          "profit": 504.4708
+        },
+        {
+          "month": "2015-11",
+          "profit": 857.2164
+        },
+        {
+          "month": "2015-12",
+          "profit": 974.5728
+        },
+        {
+          "month": "2016-01",
+          "profit": 1220.7361
+        },
+        {
+          "month": "2016-02",
+          "profit": 530.148
+        },
+        {
+          "month": "2016-03",
+          "profit": 715.2895
+        },
+        {
+          "month": "2016-04",
+          "profit": 524.4354999999999
+        },
+        {
+          "month": "2016-05",
+          "profit": 2269.551
+        },
+        {
+          "month": "2016-06",
+          "profit": 1194.1693
+        },
+        {
+          "month": "2016-07",
+          "profit": 956.2904
+        },
+        {
+          "month": "2016-08",
+          "profit": 861.9565
+        },
+        {
+          "month": "2016-09",
+          "profit": 906.1298
+        },
+        {
+          "month": "2016-10",
+          "profit": 843.0491000000001
+        },
+        {
+          "month": "2016-11",
+          "profit": 813.9041
+        },
+        {
+          "month": "2016-12",
+          "profit": 1068.0267999999999
+        },
+        {
+          "month": "2017-01",
+          "profit": 1237.5699
+        },
+        {
+          "month": "2017-02",
+          "profit": -38.744600000000005
+        },
+        {
+          "month": "2017-03",
+          "profit": 1425.4585
+        },
+        {
+          "month": "2017-04",
+          "profit": 812.6117
+        },
+        {
+          "month": "2017-05",
+          "profit": 945.6706
+        },
+        {
+          "month": "2017-06",
+          "profit": 1381.8064
+        },
+        {
+          "month": "2017-07",
+          "profit": 1329.7335
+        },
+        {
+          "month": "2017-08",
+          "profit": 1586.4059
+        },
+        {
+          "month": "2017-09",
+          "profit": 1205.6286
+        },
+        {
+          "month": "2017-10",
+          "profit": 709.594
+        },
+        {
+          "month": "2017-11",
+          "profit": 864.2161
+        },
+        {
+          "month": "2017-12",
+          "profit": 1132.5973999999999
+        }
+      ]
+    },
+    "topProductsByProfit": {
+      "type": "bar",
+      "title": "Top 20 Products by Profit",
+      "xKey": "productName",
+      "yKey": "profit",
+      "yLabel": "Profit ($)",
+      "data": [
+        {
+          "productName": "Easy-staple paper",
+          "profit": 1096.0292
+        },
+        {
+          "productName": "Dot Matrix Printer Tape Reel Labels, White, 5000/Box",
+          "profit": 904.452
+        },
+        {
+          "productName": "Xerox 1908",
+          "profit": 799.3944
+        },
+        {
+          "productName": "Xerox 1945",
+          "profit": 756.2655
+        },
+        {
+          "productName": "Staple envelope",
+          "profit": 751.629
+        },
+        {
+          "productName": "Xerox 189",
+          "profit": 746.532
+        },
+        {
+          "productName": "Xerox 1919",
+          "profit": 729.622
+        },
+        {
+          "productName": "Enermax Aurora Lite Keyboard",
+          "profit": 722.106
+        },
+        {
+          "productName": "Logitech\u00a0Gaming G510s - Keyboard",
+          "profit": 676.5204
+        },
+        {
+          "productName": "GE 48\" Fluorescent Tube, Cool White Energy Saver, 34 Watts, 30/Box",
+          "profit": 664.841
+        },
+        {
+          "productName": "Xerox 1915",
+          "profit": 658.4580000000001
+        },
+        {
+          "productName": "Microsoft Sculpt Comfort Mouse",
+          "profit": 634.406
+        },
+        {
+          "productName": "Cameo Buff Policy Envelopes",
+          "profit": 632.2568
+        },
+        {
+          "productName": "NETGEAR N750 Dual Band Wi-Fi Gigabit Router",
+          "profit": 622.8
+        },
+        {
+          "productName": "Xerox 1893",
+          "profit": 619.3589
+        },
+        {
+          "productName": "Nortel Meridian M3904 Professional Digital phone",
+          "profit": 615.96
+        },
+        {
+          "productName": "Xerox 1917",
+          "profit": 574.6925
+        },
+        {
+          "productName": "Logitech Wireless Gaming Headset G930",
+          "profit": 572.7642
+        },
+        {
+          "productName": "Tyvek Side-Opening Peel & Seel Expanding Envelopes",
+          "profit": 570.024
+        },
+        {
+          "productName": "GBC ProClick Punch Binding System",
+          "profit": 562.3842
+        }
+      ]
+    },
+    "bottomProductsByProfit": {
+      "type": "bar",
+      "title": "Bottom 20 Products by Profit",
+      "xKey": "productName",
+      "yKey": "profit",
+      "yLabel": "Profit ($)",
+      "data": [
+        {
+          "productName": "Riverside Furniture Stanwyck Manor Table Series",
+          "profit": -415.9325
+        },
+        {
+          "productName": "Sauder Forest Hills Library with Doors, Woodland Oak Finish",
+          "profit": -418.548
+        },
+        {
+          "productName": "Bevis Boat-Shaped Conference Table",
+          "profit": -429.8604
+        },
+        {
+          "productName": "Chromcraft Round Conference Tables",
+          "profit": -437.4679
+        },
+        {
+          "productName": "KI Conference Tables",
+          "profit": -450.8604
+        },
+        {
+          "productName": "GBC DocuBind 300 Electric Binding Machine",
+          "profit": -452.3428
+        },
+        {
+          "productName": "Lexmark MarkNet N8150 Wireless Print Server",
+          "profit": -506.457
+        },
+        {
+          "productName": "Tenex Antistatic Computer Chair Mats",
+          "profit": -512.9399999999999
+        },
+        {
+          "productName": "Lesro Round Back Collection Coffee Table, End Table",
+          "profit": -542.1735
+        },
+        {
+          "productName": "Global Wood Trimmed Manager's Task Chair, Khaki",
+          "profit": -574.0838
+        },
+        {
+          "productName": "Bevis Rectangular Conference Tables",
+          "profit": -586.8396
+        },
+        {
+          "productName": "Bestar Classic Bookcase",
+          "profit": -612.9386999999999
+        },
+        {
+          "productName": "StarTech.com 10/100 VDSL2 Ethernet Extender Kit",
+          "profit": -639.264
+        },
+        {
+          "productName": "Okidata MB491 Multifunction Printer",
+          "profit": -643.71
+        },
+        {
+          "productName": "Tenex Chairmat w/ Average Lip, 45\" x 53\"",
+          "profit": -681.12
+        },
+        {
+          "productName": "O'Sullivan 4-Shelf Bookcase in Odessa Pine",
+          "profit": -1006.5536
+        },
+        {
+          "productName": "GBC ProClick 150 Presentation Binding System",
+          "profit": -1143.8476
+        },
+        {
+          "productName": "Hoover Upright Vacuum With Dirt Cup",
+          "profit": -1181.2824
+        },
+        {
+          "productName": "Ibico Hi-Tech Manual Binding System",
+          "profit": -1372.455
+        },
+        {
+          "productName": "3.6 Cubic Foot Counter Height Office Refrigerator",
+          "profit": -1378.8216
+        }
+      ]
+    },
+    "salesByRegion": {
+      "type": "pie",
+      "title": "Sales by Region",
+      "nameKey": "region",
+      "valueKey": "revenue",
+      "data": [
+        {
+          "country": "United States",
+          "revenue": 819718.0554
+        },
+        {
+          "country": "Shbeen El-Kom",
+          "revenue": 819218.0554
+        },
+        {
+          "country": "Akhmim",
+          "revenue": 819118.0554
+        }
+      ]
+    }
+  },
+  "insights": [
+    "Revenue changed by 2.53% last month",
+    "Total profit is 98850.43",
+    "Profit margin is 12.06%",
+    "Easy-staple paper is the most profitable product",
+    "3.6 Cubic Foot Counter Height Office Refrigerator is the least profitable product",
+    "1167 outliers were removed"
+  ],
+  "recommendations": [
+    "Reduce costs to improve profit margin",
+    "Review 3.6 Cubic Foot Counter Height Office Refrigerator performance",
+    "Focus on high-profit products"
+  ],
+  "dataQuality": {
+    "missingPercentage": 0.0,
+    "duplicatesRemoved": 0,
+    "outliersRemoved": 1167
+  }
+}
