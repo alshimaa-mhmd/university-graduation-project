@@ -18,12 +18,25 @@ button{
   cursor: pointer;
   align-items: center;
   justify-content: flex-start;
+  width: 223px;
+  padding: 8px;
 }
 
 .side-link img{
   width: 15px;
   height: 15px;
 }
+
+.active{
+  background-color: rgb(17, 82, 212, 0.1);
+  border-radius: 4px;
+} 
+
+.active p{
+  color: rgb(17, 82, 212);
+}
+
+
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

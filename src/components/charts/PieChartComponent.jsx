@@ -8,7 +8,7 @@ const CustomTooltip = ({ active, payload }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-sm">
       <p className="text-sm font-medium text-gray-900">{country}</p>
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-black-500">
         ${revenue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
       </p>
     </div>
@@ -20,7 +20,7 @@ export default function SimplePieChart() {
   const data = salesByRegion.data;
 
   return (
-    <PieChart style={{ width: '100%', maxWidth: '500px', maxHeight: '80vh', aspectRatio: 2 }}>
+    <PieChart style={{ width: '80%', maxWidth: '500px', maxHeight: '80vh', aspectRatio: 2 }}>
       <Pie
         dataKey="revenue"
         nameKey="country"

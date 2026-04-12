@@ -11,6 +11,7 @@ import LineChartBox from '../components/LineChartBox';
 import InsightCard from '../components/InsightCard';
 import AIInsight from '../assets/Background(4).png'
 import CustomActiveShapePieChart from '../components/charts/PieChartComponent';
+import InventoryOptimization from '../components/InventoryOptimization';
 
 const images =[
     cart,
@@ -56,12 +57,16 @@ const Dashboard = () => {
     </div>
 
         {/* Regional revenue distribution */}
-    <div className='flex flex-col bg-white rounded-xl p-8 gap-6 '>
-        <p className='text-[#191C1E] font-bold text-lg '>
-          Regional Revenue Distribution
-        </p>
-
-        <CustomActiveShapePieChart />
+        <div className='flex gap-8 flex-wrap items-start'>
+          <div className='flex flex-col bg-white rounded-xl p-8 gap-6 w-[464px] '>
+              <p className='text-[#191C1E] font-bold text-lg '>
+                Regional Revenue Distribution
+              </p>
+              <div className='flex items-center justify-center'>
+              <CustomActiveShapePieChart />
+              </div>
+          </div>
+          <InventoryOptimization />
     </div>
   </div>
   )

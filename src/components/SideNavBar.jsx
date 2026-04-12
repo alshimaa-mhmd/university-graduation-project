@@ -5,7 +5,7 @@ import avatar from '../assets/avatar.png'
 import reports from '../assets/reports.png'
 import settings from '../assets/settings.png'
 import forcasting from '../assets/forcasting.png'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const SideNavBar = ({ link, setNavLink, token }) => {
 
@@ -20,6 +20,14 @@ const SideNavBar = ({ link, setNavLink, token }) => {
         setNavLink(linkName);
     }
 
+    const activeLinkStyle = {
+        backgroundColor: '#E0E7FF',
+        color: '#3730A3',
+        fontWeight:"semiBold",
+        borderRadius: '8px',
+    };
+
+
   return (
     <>
     <div className='min-w-[256px] h-screen static top-0 left-0 bg-white flex flex-col items-start justify-between p-5'>
@@ -28,19 +36,19 @@ const SideNavBar = ({ link, setNavLink, token }) => {
             LOGO
         </div>
 
-        <div className='side-link' onClick={() => handleLinkClick('upload hub')}>
+        <div className={`side-link `} style={link === 'upload hub' ? activeLinkStyle : {}} onClick={() => handleLinkClick('upload hub')}>
             <img src={uploads} alt="home" className='w-5 h-5' /> <p>Upload Hub</p>
         </div>
-        <div className='side-link' onClick={() => handleLinkClick('overview')}>
+        <div className={`side-link `} style={link === 'overview' ? activeLinkStyle : {}} onClick={() => handleLinkClick('overview')}>
             <img src={dashboard} alt="home" className='w-5 h-5' /> <p>Overview</p>
         </div>
-        <div className='side-link' onClick={() => handleLinkClick('product deep dive')}>
+        <div className={`side-link `} style={link === 'product deep dive' ? activeLinkStyle : {}} onClick={() => handleLinkClick('product deep dive')}>
             <img src={reports} alt="home" className='w-5 h-5' /> <p>Product Deep Dive</p>
         </div>
-        <div className='side-link' onClick={() => handleLinkClick('sales trends')}>
+        <div className={`side-link `} style={link === 'sales trends' ? activeLinkStyle : {}} onClick={() => handleLinkClick('sales trends')}>
             <img src={forcasting} alt="home" className='w-5 h-5' /> <p>Sales Trends</p>
         </div>
-        <div className='side-link' onClick={() => handleLinkClick('settings')}>
+        <div className={`side-link `} style={link === 'settings' ? activeLinkStyle : {} } onClick={() => handleLinkClick('settings')}>
             <img src={settings} alt="home" className='w-5 h-5' /> <p>Settings</p>
         </div>
 
