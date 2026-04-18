@@ -5,11 +5,13 @@ import lamp from '../assets/Container.png'
 import AIImage from '../assets/Container(1).png'
 import trash from '../assets/BackgroundShadow.png'
 import BarChartComponent from '../components/charts/BarChartComponent'
+import LineChart from '../components/charts/LineChart';
 import DataContext from '../context/DataContext'
 import InsightCard from '../components/InsightCard'
 const Forcasting = () => {
   const outlier = useContext(DataContext).outlier;
   const recommendations = useContext(DataContext).recommendations ;
+  const profitData = useContext(DataContext).profitOverTime.data;
   return (
     <>
     <div className='p-8 flex flex-col gap-10'>
@@ -34,7 +36,7 @@ const Forcasting = () => {
           </div>
         </div>
 
-        <BarChartComponent />
+       <LineChart data={profitData} datakey = "profit" />
 
       </div>
    {/* end chart section */}

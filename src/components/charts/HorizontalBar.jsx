@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LabelList } from "recharts";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
+const INITIAL_VISIBLE = 5;
 
 const fmt = (v) =>
   "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -29,44 +32,67 @@ const CustomBar = ({ x, y, width, height, fill, maxWidth }) => {
 };
 
 const HorizontalBar = ({ data, color }) => {
+  const [showAll, setShowAll] = useState(false);
+
   const negative = data.some((d) => d.profit < 0);
-  const chartData = data.map((d) => ({ ...d, profit: Math.abs(d.profit) }));
-  const max = Math.max(...chartData.map((d) => d.profit));
+  const allChartData = data.map((d) => ({ ...d, profit: Math.abs(d.profit) }));
+  const visibleData = showAll ? allChartData : allChartData.slice(0, INITIAL_VISIBLE);
+  const max = Math.max(...allChartData.map((d) => d.profit));
   const rowH = 52;
+  const hasMore = data.length > INITIAL_VISIBLE;
 
   return (
-    <ResponsiveContainer width="100%" height={data.length * rowH + 20}>
-      <BarChart
-        layout="vertical"
-        data={chartData}
-        margin={{ top: 4, right: 88, left: 0, bottom: 4 }}
-        barCategoryGap="30%"
-        style={{ display : "flexBok", justifyContent : "space-between" }}
-      >
-       
-        <YAxis
-          type="category"
-          dataKey="productName"
-          width={210}
-          tick={{ fontSize: 12, fill: "#374151", fontFamily: "inherit" }}
-          axisLine={false}
-          tickLine={false}
-        />
-        <Bar
-          dataKey="profit"
-          shape={(props) => (
-            <CustomBar {...props} fill={color} maxWidth={props.background?.width || props.width} />
-          )}
-          isAnimationActive
+    <div>
+      <ResponsiveContainer width="100%" height={visibleData.length * rowH + 20}>
+        <BarChart
+          layout="vertical"
+          data={visibleData}
+          margin={{ top: 4, right: 88, left: 0, bottom: 4 }}
+          barCategoryGap="30%"
         >
-             <XAxis type="number" domain={[0, max * 1.05]} hide />
-          <LabelList
-            dataKey="profit"
-            content={(props) => <CustomLabel {...props} negative={negative} />}
+          <YAxis
+            type="category"
+            dataKey="productName"
+            width={210}
+            tick={{ fontSize: 12, fill: "#374151", fontFamily: "inherit" }}
+            axisLine={false}
+            tickLine={false}
           />
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+          <Bar
+            dataKey="profit"
+            shape={(props) => (
+              <CustomBar {...props} fill={color} maxWidth={props.background?.width || props.width} />
+            )}
+            isAnimationActive
+          >
+            <XAxis type="number" domain={[0, max * 1.05]} hide />
+            <LabelList
+              dataKey="profit"
+              content={(props) => <CustomLabel {...props} negative={negative} />}
+            />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+
+      {hasMore && (
+        <button
+          onClick={() => setShowAll((prev) => !prev)}
+          className="mt-2 flex items-center gap-1.5 text-xs font-medium text-gray-600 hover:text-gray-800 transition-colors duration-150 mx-auto"
+        >
+          {showAll ? (
+            <>
+              <ChevronUp size={14} />
+              Show less
+            </>
+          ) : (
+            <>
+              <ChevronDown size={14} />
+              Show {data.length - INITIAL_VISIBLE} more
+            </>
+          )}
+        </button>
+      )}
+    </div>
   );
 };
 
