@@ -3,6 +3,7 @@ import DataContext from '../context/DataContext';
 import star from '../assets/Container(2).png';
 const TopProductCard = () => {
     const { topProductByProfit } = useContext(DataContext);
+    console.log(topProductByProfit);
   return (
     <div className='w-137.5 relative p-8 flex flex-col gap-4 bg-white rounded-xl '>
         <img src={star} className='w-36 h-36 absolute right-0 top-0 ' />

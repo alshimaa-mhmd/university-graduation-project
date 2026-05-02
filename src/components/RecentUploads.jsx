@@ -1,19 +1,6 @@
 import { useEffect, useState } from "react";
 import {supabase} from "../client";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const fileIcon = (name) => {
   if (name.endsWith(".xlsx") || name.endsWith(".xls")) {
     return (
@@ -37,10 +24,11 @@ const fileIcon = (name) => {
 
 const StatusBadge = ({ status }) => {
   const config = {
-    Processed: "bg-green-100 text-green-700 border border-green-200",
-    pending : "bg-blue-100 text-blue-600 border border-blue-200",
-    Failed: "bg-red-100 text-red-600 border border-red-200",
-  };
+  completed:  "bg-green-100 text-green-700 border border-green-200",
+  processing: "bg-yellow-100 text-yellow-600 border border-yellow-200 ",
+  pending: "bg-blue-100 text-blue-600 border border-blue-200 ",
+  failed: "bg-red-100 text-red-600 border border-red-200",
+};
   return (
     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${config[status] ?? "bg-slate-100 text-slate-500"}`}>
      
@@ -67,12 +55,34 @@ const StatusBadge = ({ status }) => {
   />
 </svg>
       )}
+       {status === "processing" && (
+        <svg
+  className="ml-3 size-5 animate-spin text-yellow-500"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <circle
+    className="opacity-25"
+    cx="12"
+    cy="12"
+    r="10"
+    stroke="currentColor"
+    strokeWidth="4"
+  />
+  <path
+    className="opacity-75"
+    fill="currentColor"
+    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+  />
+</svg>
+      )}
     </span>
   );
 };
 
-const ActionButton = ({ status, onAction }) => {
-  if (status === "Processed") {
+const ActionButton = ({ status, onAction , abortControllerRef }) => {
+  if (status === "completed") {
     return (
       <button
         onClick={onAction}
@@ -82,23 +92,23 @@ const ActionButton = ({ status, onAction }) => {
       </button>
     );
   }
-  if (status === "Processing") {
+  if (status === "pending") {
     return (
       <button
-        onClick={onAction}
+        onClick={() => abortControllerRef.current?.abort() }
         className="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors"
       >
         Cancel
       </button>
     );
   }
-  if (status === "Failed") {
+  if (status === "failed") {
     return (
       <button
         onClick={onAction}
         className="text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors whitespace-nowrap"
       >
-        Retry Upload
+        See Why
       </button>
     );
   }
@@ -127,40 +137,58 @@ export default function RecentUploads({
   onFilter,
   onRefresh,
   refreshKey,
+  abortControllerRef
 }) {
 
-    const [jobs, setJobs] = useState([])
+  const [jobs, setJobs] = useState([])
 
- useEffect(() => {
-
+  useEffect(() => {
     const controller = new AbortController();
-
-
-  const fetchData = async () => {
+    const fetchData = async () => {
       const { data: { user }, error: authError } = await supabase.auth.getUser()
 
-  if (authError || !user) throw new Error('User not logged in')
-try{
-let { data: job, error } = await supabase
-  .from('job')
-  .select("*")
-  .eq('user_id', user.id)
-  .order("created_at", { ascending: false })
-  .abortSignal(controller.signal); // 👈 tie the request to the controller
+      if (authError || !user) throw new Error('User not logged in')
+      try{
+      let { data: job, error } = await supabase
+        .from('job')
+        .select("*")
+        .eq('user_id', user.id)
+        .order("created_at", { ascending: false })
+        .abortSignal(controller.signal); // 👈 tie the request to the controller
 
-     if (error) throw error;
-    
-        console.log('Fetched jobs:', job)
-        setJobs(job)
-} catch (err) {
-  if (err.name === "AbortError") return; // 👈 silently ignore aborted requests
-      console.error(err);   
-}
-    
+          if (error) throw error;
+          
+              console.log('Fetched jobs:', job)
+              setJobs(job)
+      } catch (err) {
+        if (err.name === "AbortError") return; // 👈 silently ignore aborted requests
+            console.error(err);   
+      }
+          
     }
-fetchData();
+    fetchData();
 
-  
+    // Real time listener to update status
+    const channel = supabase
+    .channel("job-status-updates")
+    .on(
+      "postgres_changes",
+      { event: "UPDATE", schema: "public", table: "job" },
+      (payload) => {
+        // When any job row updates, patch it in local state
+        setJobs((prev) =>
+          prev.map((job) =>
+            job.id === payload.new.id ? { ...job, ...payload.new } : job
+          )
+        );
+      }
+    )
+    .subscribe();
+
+  return () => {
+    controller.abort();
+    supabase.removeChannel(channel); // cleanup
+  };
 }, [ refreshKey ])
 
 
@@ -237,6 +265,7 @@ fetchData();
                     <ActionButton
                       status={record.status}
                       onAction={() => onAction?.(record)}
+                      abortControllerRef={abortControllerRef}
                     />
                   </td>
                 </tr>

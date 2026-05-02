@@ -1,6 +1,7 @@
 import {supabase} from "../client";  // adjust path as needed
 import { useState, useRef } from "react";
 import cloud from '../assets/cloud.png'
+import { triggerAnalysis } from "../api";
 const formatBytes = (bytes) => {
   if (bytes === 0) return "0 B";
   const k = 1024;
@@ -9,10 +10,11 @@ const formatBytes = (bytes) => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;
 };
 
-export default function FileDropZone({ onFilesChange, onUploadSuccess }) {
+export default function FileDropZone({ onFilesChange, onUploadSuccess, abortControllerRef }) {
   const [files, setFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef(null);
+
 
   const addFiles = (incoming) => {
     console.log(incoming);
@@ -91,12 +93,17 @@ const saveToDatabase = async (file, publicUrl) => {
       status: 'pending',
       user_id: user.id,
     })
+    .select("id")   // 👈 add this — returns the new row with its id
+    .single();
 
-  if (error) throw error
-  return data
+    if (error) throw error;
+    return data.id;
 }
 
 const uploadFile = async (file) => {
+
+  abortControllerRef.current = new AbortController();
+  const signal = abortControllerRef.current.signal;
   try {
     // 1. Validate
     validateFile(file)
@@ -104,11 +111,23 @@ const uploadFile = async (file) => {
     // 2. Upload to bucket
     const fileName = await uploadToStorage(file)
 
+     // Check if cancelled between stages
+    if (signal.aborted) return;
+
     // 3. Get public URL
     const publicUrl = getPublicUrl(fileName)
 
+    
     // 4. Save URL to files table
-    await saveToDatabase(file, publicUrl)
+   
+
+    const jobId = await saveToDatabase(file, publicUrl); // 👈 now has the id
+
+     // Check if cancelled between stages
+    if (signal.aborted) return;
+
+    await triggerAnalysis(jobId, signal);
+
     await onUploadSuccess?.()
     
     console.log('File uploaded successfully!')
@@ -118,6 +137,7 @@ const uploadFile = async (file) => {
     console.error('Upload failed:', error.message)
   }
 }
+
 
  const onDragOver = (e) => { e.preventDefault(); setIsDragging(true); };
   const onDragLeave = () => setIsDragging(false);

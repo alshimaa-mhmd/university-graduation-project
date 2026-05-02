@@ -12,6 +12,7 @@ import InsightCard from '../components/InsightCard';
 import AIInsight from '../assets/Background(4).png'
 import CustomActiveShapePieChart from '../components/charts/PieChartComponent';
 import InventoryOptimization from '../components/InventoryOptimization';
+import Empty from '../components/Empty';
 
 const images =[
     cart,
@@ -26,10 +27,20 @@ const images =[
 const Dashboard = () => {
 
   const d = useContext(DataContext);
-  const cardData = d.data.cards;
-  const insightData = d.data.insights;
+  const cardData = d.data?.cards;
+  const insightData = d.data?.insights;
+  const data = d?.data;
+
+    // Check if data is empty
+  if (!data || Object.keys(data).length === 0 ||  data.message ) {
+    return ( <div className='flex flex-col w-full h-full justify-center items-center'><Empty /></div> ) ;
+  }
+ 
+  console.log(data);
 
   return (
+   
+    
     <div className='p-8 flex flex-col gap-10'>
     <div className='w-full flex items-center flex-wrap gap-6'>
       {
@@ -45,7 +56,7 @@ const Dashboard = () => {
         <div className='flex items-center gap-4'>
           <img src={AIInsight} alt='AI Insight' className='w-10 h-10' />
           <p className='text-[#191C1E] text-lg font-bold leading-6'>
-            AI Insights
+            Insights
           </p>
         </div>
         {
@@ -69,6 +80,7 @@ const Dashboard = () => {
           <InventoryOptimization />
     </div>
   </div>
+     
   )
 }
 

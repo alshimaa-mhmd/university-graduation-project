@@ -8,6 +8,7 @@ import FileText from '../assets/BackgroundShadow(1).png';
 import Monitor from '../assets/BackgroundShadow(2).png';
 import Package from '../assets/BackgroundShadow(3).png';
 import { Download, MoreHorizontal, Sparkles,  } from "lucide-react";
+import Empty from '../components/Empty';
 
 
 const categories = [
@@ -34,6 +35,15 @@ function CategoryRow({ name, pct, icon, color }) {
 
 const Reports = () => {
   const { topProductsByProfit, bottomProductsByProfit } = useContext(DataContext);
+
+      const data = useContext(DataContext)?.data;
+
+    // Check if data is empty
+  if (!data || Object.keys(data).length === 0 ||  data.message) {
+    return ( <div className='flex flex-col w-full h-full justify-center items-center'><Empty /></div> ) ;
+  }
+
+  
   return (
     <>
   <div className='p-8 flex flex-col gap-10'>

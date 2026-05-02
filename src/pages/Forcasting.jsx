@@ -8,10 +8,19 @@ import BarChartComponent from '../components/charts/BarChartComponent'
 import LineChart from '../components/charts/LineChart';
 import DataContext from '../context/DataContext'
 import InsightCard from '../components/InsightCard'
+import Empty from '../components/Empty'
 const Forcasting = () => {
-  const outlier = useContext(DataContext).outlier;
-  const recommendations = useContext(DataContext).recommendations ;
-  const profitData = useContext(DataContext).profitOverTime.data;
+  const outlier = useContext(DataContext)?.outlier;
+  const recommendations = useContext(DataContext)?.recommendations ;
+  const profitData = useContext(DataContext)?.profitOverTime?.data;
+    const data = useContext(DataContext)?.data;
+
+    // Check if data is empty
+  if (!data || Object.keys(data).length === 0 || data.message) {
+    return ( <div className='flex flex-col w-full h-full justify-center items-center'><Empty /></div> ) ;
+  }
+
+
   return (
     <>
     <div className='p-8 flex flex-col gap-10'>
@@ -84,7 +93,7 @@ const Forcasting = () => {
         <img src={lamp} alt='lamp'/>
         <h3 className='text-black-500 font-bold'>Strategic Recommendation</h3>
       </div>
-      <div className='flex gap-6 items-center'>
+      <div className='flex gap-6 items-center flex-wrap'>
         {
           recommendations.map((recommendation, index) => (
            <InsightCard key={index} title={"Focus on high-profit"} description={recommendation} index={index} CostumeWidth="304px"/>

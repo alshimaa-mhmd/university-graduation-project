@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import uploads from '../assets/dataUpload.png'
 import dashboard from '../assets/dashboard.png'
 import avatar from '../assets/avatar.png'
@@ -6,9 +6,13 @@ import reports from '../assets/reports.png'
 import settings from '../assets/settings.png'
 import forcasting from '../assets/forcasting.png'
 import { NavLink, useNavigate } from 'react-router-dom'
+import NavContext from '../context/NavContext'
+import velox from '../assets/velox.jpeg'
 
-const SideNavBar = ({ link, setNavLink, token }) => {
+const SideNavBar = ({ token }) => {
 
+     const {navLink , setNavLink} = useContext(NavContext);
+     const link = navLink;
     // handle logout function
      let navigate = useNavigate();
     
@@ -22,7 +26,7 @@ const SideNavBar = ({ link, setNavLink, token }) => {
 
     const activeLinkStyle = {
         backgroundColor: '#E0E7FF',
-        color: '#3730A3',
+        color: '#004AC6',
         fontWeight:"semiBold",
         borderRadius: '8px',
     };
@@ -30,10 +34,10 @@ const SideNavBar = ({ link, setNavLink, token }) => {
 
   return (
     <>
-    <div className='min-w-[256px] h-screen static top-0 left-0 bg-white flex flex-col items-start justify-between p-5'>
+    <div className='min-w-[256px] h-screen sticky top-0 left-0 bg-white flex flex-col items-start justify-between p-5'>
       <div className='flex flex-col gap-4 w-full '>
-        <div className='mb-5'>
-            LOGO
+        <div className='mb-5 w-full'>
+           logo
         </div>
 
         <div className={`side-link `} style={link === 'upload hub' ? activeLinkStyle : {}} onClick={() => handleLinkClick('upload hub')}>
