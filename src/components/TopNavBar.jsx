@@ -19,7 +19,8 @@ const TopNavBar = ( { link} ) => {
         </p>
       </div>
 
-      <div className='flex gap-4 items-center'>
+      <div className='flex gap-4 items-center relative'>
+        <div className='w-3 h-3 rounded-full bg-red-600 text-red-600 text-center absolute bottom-8'></div>
         <button className='cursor-pointer'>
           <img src={notificationImg} alt="Notification" className='w-10 h-10' />
         </button>

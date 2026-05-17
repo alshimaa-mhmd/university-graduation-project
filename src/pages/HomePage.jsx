@@ -9,6 +9,7 @@ import DataProvider from '../context/DataProvider';
 import NavProvider from '../context/NavProvider';
 import NavContext from '../context/NavContext';
 import { useContext } from 'react';
+import AIChat from './AIChat';
 
 // 👇 Split into two components so the consumer is always INSIDE the provider
 function HomePageContent({ token }) {
@@ -24,6 +25,7 @@ function HomePageContent({ token }) {
         {navLink === 'upload hub'         && <DataUpload />}
         {navLink === 'product deep dive'  && <Reports />}
         {navLink === 'sales trends'       && <Forcasting />}
+        {navLink === 'AI Agent'           && <AIChat />}
       </div>
     </div>
   );

@@ -14,8 +14,9 @@ const DataUpload = () => {
   const { setNavLink } = useContext(NavContext);
   const abortControllerRef = useRef(null);
   const [errMsg, setErrMsg] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const handleAction = async (record) => {
+    
     if (record.status === "completed") {
       const resultData = await fetchResult(record.id); // fetches from result table
       setData(resultData);                             // 👈 populates all charts/cards
@@ -43,12 +44,16 @@ const DataUpload = () => {
       onFilesChange={(files) => console.log(files)} 
       onUploadSuccess={() => setRefreshKey(k => k + 1)}
       abortControllerRef={abortControllerRef}
+      loading={loading}
+      setLoading={setLoading}
       />
 
       <RecentUploads 
       refreshKey={refreshKey} 
       onAction={handleAction}
       abortControllerRef={abortControllerRef}
+      loading={loading}
+      setLoading={setLoading}
       />
     </div>
   )

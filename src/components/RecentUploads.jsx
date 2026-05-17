@@ -137,11 +137,13 @@ export default function RecentUploads({
   onFilter,
   onRefresh,
   refreshKey,
-  abortControllerRef
+  abortControllerRef,
+  loading,
+  setLoading
 }) {
 
   const [jobs, setJobs] = useState([])
-
+  
   useEffect(() => {
     const controller = new AbortController();
     const fetchData = async () => {
@@ -239,12 +241,41 @@ export default function RecentUploads({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {jobs.map((record) => (
-                <tr key={record.id} className="hover:bg-slate-50/60 transition-colors group">
-                  {/* File Name */}
-                  <td className="py-4 px-6">
-                    <div className="flex items-center gap-3">
-                      {fileIcon(record.file_name)}
+              {loading && (
+                <tr>
+                  <td colSpan="5" className="py-4 px-6 text-slate-500">
+                    <div className="w-full flex items-center justify-center ">
+                    Loading...
+                     <svg
+                      className="ml-3 size-5 animate-spin text-gray-600"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      />
+                    </svg>
+                    </div>
+                  </td>
+                </tr>
+              ) } 
+                {jobs.map((record) => (
+                  <tr key={record.id} className="hover:bg-slate-50/60 transition-colors group">
+                    {/* File Name */}
+                    <td className="py-4 px-6">
+                      <div className="flex items-center gap-3">
+                        {fileIcon(record.file_name)}
                       <span className="font-medium text-slate-800 group-hover:text-slate-900">
                         {record.file_name}
                       </span>

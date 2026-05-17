@@ -4,6 +4,9 @@ import { Link,  useNavigate } from "react-router-dom";
 import loginBG from "../assets/loginbg.png"
 // import rightImg from "../assets/contact-sales-illo.webp"
 import rightImg from "../assets/collaboration@2x.png"
+import veloxicon from '../assets/veloxicon.png'
+
+
 function Login( {setToken} ) {
  let navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -47,8 +50,9 @@ navigate("/homepage")
 
   
 return (
-    <div style={{ backgroundImage: `url(${loginBG})` }} className=" min-h-screen bg-cover bg-[#f5f2f2] flex-wrap flex items-center justify-center gap-5">
-      <div className="flex flex-col gap-5">
+    <div style={{ backgroundImage: `url(${loginBG})` }} className=" min-h-screen bg-cover  flex-wrap flex items-center justify-center gap-5">
+      <div className="flex flex-col items-center justify-center gap-5">
+        <img src={veloxicon} className="w-69 mb-12" />
       <h1 className="text-3xl font-bold">Login to your account</h1>
 
       <hr className="h-2  border-black/20 w-[180px] md:w-[433px]" /> 
@@ -65,7 +69,7 @@ return (
       <div>Don't have an account ? <Link to="/signup" className="text-[#7C5BFF] hover:underline font-semibold">Sign Up</Link></div>
     </div>
 
-    <img src={rightImg} className="max-h-screen"/>
+    {/* <img src={rightImg} className="max-h-screen"/> */}
     </div>
   )
 }

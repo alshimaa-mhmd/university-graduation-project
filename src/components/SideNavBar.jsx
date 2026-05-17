@@ -5,9 +5,12 @@ import avatar from '../assets/avatar.png'
 import reports from '../assets/reports.png'
 import settings from '../assets/settings.png'
 import forcasting from '../assets/forcasting.png'
+import AIcon from '../assets/AIcon.png'
 import { NavLink, useNavigate } from 'react-router-dom'
 import NavContext from '../context/NavContext'
-import velox from '../assets/velox.jpeg'
+import exit from '../assets/exit.png'
+import enter from '../assets/enter.png'
+import veloxicon from '../assets/veloxicon.png'
 
 const SideNavBar = ({ token }) => {
 
@@ -35,12 +38,12 @@ const SideNavBar = ({ token }) => {
   return (
     <>
     <div className='min-w-[256px] h-screen sticky top-0 left-0 bg-white flex flex-col items-start justify-between p-5'>
-      <div className='flex flex-col gap-4 w-full '>
+      <div className='flex flex-col gap-4 w-full justify-start items-start'>
         <div className='mb-5 w-full'>
-           logo
+           <img src={veloxicon} className="w-32 h-8 ml-[-14px]" />
         </div>
 
-        <div className={`side-link `} style={link === 'upload hub' ? activeLinkStyle : {}} onClick={() => handleLinkClick('upload hub')}>
+        <div className={`side-link`} style={link === 'upload hub' ? activeLinkStyle : {}} onClick={() => handleLinkClick('upload hub')}>
             <img src={uploads} alt="home" className='w-5 h-5' /> <p>Upload Hub</p>
         </div>
         <div className={`side-link `} style={link === 'overview' ? activeLinkStyle : {}} onClick={() => handleLinkClick('overview')}>
@@ -50,15 +53,18 @@ const SideNavBar = ({ token }) => {
             <img src={reports} alt="home" className='w-5 h-5' /> <p>Product Deep Dive</p>
         </div>
         <div className={`side-link `} style={link === 'sales trends' ? activeLinkStyle : {}} onClick={() => handleLinkClick('sales trends')}>
-            <img src={forcasting} alt="home" className='w-5 h-5' /> <p>Sales Trends</p>
+            <img src={forcasting} alt="home" className='w-5 h-3' /> <p>Sales Trends</p>
+        </div>
+        <div className={`side-link `} style={link === 'AI Agent' ? activeLinkStyle : {}} onClick={() => handleLinkClick('AI Agent')}>
+            <img src={AIcon} alt="home" className='w-5 h-5' /> <p>AI Agent</p>
         </div>
         <div className={`side-link `} style={link === 'settings' ? activeLinkStyle : {} } onClick={() => handleLinkClick('settings')}>
             <img src={settings} alt="home" className='w-5 h-5' /> <p>Settings</p>
         </div>
 
-        <div className='w-full border-t border-gray-200 p-3 mt-4' >
-           <button onClick={handleLogout}>  
-            Logout
+        <div className='w-full border-t border-gray-200 py-3 mt-4' >
+           <button onClick={handleLogout} className='flex gap-2 items-center hover:bg-gray-200 p-3 rounded-md w-full'>  
+            <img src={exit} className='w-5 h-5'/> 
         </button>
         </div>
 

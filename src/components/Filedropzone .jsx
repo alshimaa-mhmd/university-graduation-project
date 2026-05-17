@@ -10,7 +10,7 @@ const formatBytes = (bytes) => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;
 };
 
-export default function FileDropZone({ onFilesChange, onUploadSuccess, abortControllerRef }) {
+export default function FileDropZone({ onFilesChange, onUploadSuccess, abortControllerRef, loading, setLoading }) {
   const [files, setFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef(null);
@@ -104,7 +104,9 @@ const uploadFile = async (file) => {
 
   abortControllerRef.current = new AbortController();
   const signal = abortControllerRef.current.signal;
+  
   try {
+    setLoading(true);
     // 1. Validate
     validateFile(file)
 
@@ -132,9 +134,10 @@ const uploadFile = async (file) => {
     
     console.log('File uploaded successfully!')
 
-
+    setLoading(false);
   } catch (error) {
     console.error('Upload failed:', error.message)
+    setLoading(false);
   }
 }
 

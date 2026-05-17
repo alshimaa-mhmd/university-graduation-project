@@ -22,10 +22,7 @@ button{
   padding: 8px;
 }
 
-.side-link img{
-  width: 15px;
-  height: 15px;
-}
+
 
 .active{
   background-color: rgb(17, 82, 212, 0.1);
