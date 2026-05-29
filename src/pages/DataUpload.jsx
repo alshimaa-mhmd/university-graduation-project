@@ -6,6 +6,7 @@ import DataContext from '../context/DataContext'
 import { fetchResult } from "../api";
 import NavContext from '../context/NavContext';
 import ErrorPopup from '../components/ErrorPopup';
+import RequiredDataStructure from '../components/RequiredDataStructure';
 
 const DataUpload = () => {
 
@@ -47,6 +48,8 @@ const DataUpload = () => {
       loading={loading}
       setLoading={setLoading}
       />
+
+      <RequiredDataStructure onDownload={() => {}} />
 
       <RecentUploads 
       refreshKey={refreshKey} 

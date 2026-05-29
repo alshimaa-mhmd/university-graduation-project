@@ -11,10 +11,16 @@ import { Download, MoreHorizontal, Sparkles,  } from "lucide-react";
 import Empty from '../components/Empty';
 
 
-const categories = [
-  { name: "Paper Supplies", pct: 64, icon: FileText, color: "bg-blue-500" },
-  { name: "Technology", pct: 28, icon: Monitor, color: "bg-gray-400" },
-  { name: "Appliances", pct: 8, icon: Package, color: "bg-orange-500" },
+const categoryStyle = [
+  {icon: FileText, color: "bg-blue-500" },
+  {icon: Monitor, color: "bg-gray-400" },
+  {icon: Package, color: "bg-orange-500" },
+  {icon: FileText, color: "bg-blue-500" },
+  {icon: Monitor, color: "bg-gray-400" },
+  {icon: Package, color: "bg-orange-500" },
+  {icon: FileText, color: "bg-blue-500" },
+  {icon: Monitor, color: "bg-gray-400" },
+  {icon: Package, color: "bg-orange-500" },
 ];
 
 function CategoryRow({ name, pct, icon, color }) {
@@ -23,19 +29,23 @@ function CategoryRow({ name, pct, icon, color }) {
       <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center shrink-0">
         <img src={icon} size={14} className="text-gray-500 w-14" />
       </div>
-      <span className="text-sm text-gray-700 flex-1">{name}</span>
+      <span title={name} className="text-xs text-gray-700 flex-1 truncate">{name}</span>
       <div className="flex-[2] h-1.5 bg-gray-100 rounded-full overflow-hidden mx-3">
         <div className={`h-full ${color} rounded-full`} style={{ width: `${pct}%` }} />
       </div>
-      <span className="text-sm font-medium text-gray-800 w-7 text-right">{pct}%</span>
+      <span className="text-xs font-medium text-gray-800 w-7 text-right">{pct}%</span>
     </div>
   );
 }
 
 
 const Reports = () => {
-  const { topProductsByProfit, bottomProductsByProfit } = useContext(DataContext);
-
+  const { topProductsByProfit, bottomProductsByProfit, category } = useContext(DataContext);
+//   const categories = [
+//   { name: category?.[0], pct: category?.[0]?.contribution , icon: FileText, color: "bg-blue-500" },
+//   { name:  category?.[1], pct: category?.[1]?.contribution , icon: Monitor, color: "bg-gray-400" },
+//   { name: category?.[2], pct: category?.[2]?.contribution , icon: Package, color: "bg-orange-500" },
+// ];
       const data = useContext(DataContext)?.data;
 
     // Check if data is empty
@@ -114,10 +124,16 @@ const Reports = () => {
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <h3 className="text-sm font-semibold text-gray-900 mb-1">Category Breakdown</h3>
             <div>
-              {categories.map((cat) => (
-                <CategoryRow key={cat.name} {...cat} />
+              {Object.entries(category).map(([name, data], index) => (
+                <CategoryRow
+                  key={name}
+                  name={name}
+                  pct={parseFloat(data.contribution)}
+                  icon={categoryStyle[index]?.icon}
+                  color={categoryStyle[index]?.color}
+                />
               ))}
-            </div>
+          </div>
           </div>
  
           {/* Restock Optimization */}

@@ -3,6 +3,7 @@
 @theme {
   --color-gray-500: #F2F4F6;
   --color-black-500: #191C1E;
+  --color-gray-67:#EEF2F7;
 }
 
 body{
@@ -21,6 +22,13 @@ button{
   width: 223px;
   padding: 8px;
 }
+
+.activeLinkStyle  {
+    background-color: #E0E7FF;
+    color: #004AC6;
+    font-weight: semiBold;
+    border-radius: 8px;
+  };
 
 
 

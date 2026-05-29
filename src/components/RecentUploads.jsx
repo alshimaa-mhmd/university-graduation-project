@@ -193,6 +193,16 @@ export default function RecentUploads({
   };
 }, [ refreshKey ])
 
+const formatDate = (isoString) => {
+  return new Date(isoString).toLocaleString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
+
 
   const start = (currentPage - 1) * pageSize + 1;
   const end = Math.min(start + records.length - 1, totalRecords);
@@ -283,7 +293,7 @@ export default function RecentUploads({
                   </td>
                   {/* Date */}
                   <td className="py-4 px-6 text-slate-500 whitespace-nowrap">
-                    {record.created_at}
+                    {formatDate(record.created_at)}
                   </td>
                   {/* Size */}
                   <td className="py-4 px-6 text-slate-500"> 1 MB </td>

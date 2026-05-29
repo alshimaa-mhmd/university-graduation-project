@@ -9,9 +9,10 @@ export default function DataProvider({ children }) {
     // if data is error 
     const errorMsg = data?.message;
 
-    const outlier = data?.dataQuality?.outliersRemoved;
-    const recommendations = data?.recommendations;
-    const Insights = data?.insights;
+    const outlier = data?.dataQuality?.anomaliesDetected;
+    const cardData = data?.cards;
+    const recommendations = data?.recommendations_plan?.actions;
+    const Insights = data?.insights_analysis?.data;
     const salesByRegion = data?.charts?.salesByRegion;
     const profitOverTime = data?.charts?.profitOverTime;
     const salesOverTime = data?.charts?.salesOverTime;
@@ -19,7 +20,9 @@ export default function DataProvider({ children }) {
     const bottomProductsByProfit = data?.charts?.bottomProductsByProfit;
     const topProductByProfit = data?.charts?.topProductsByProfit?.data?.[0];
     const lessProductByProfit = data?.charts?.bottomProductsByProfit?.data?.[bottomProductsByProfit?.data?.length - 1];
-
+    const category = data?.category_analysis;
+    const summary = data?.ai_summary;
+    const revenueForecast = data?.charts?.revenueForecast?.data;
      return (
 
     <DataContext.Provider value={{ 
@@ -35,7 +38,11 @@ export default function DataProvider({ children }) {
       topProductsByProfit, 
       bottomProductsByProfit, 
       topProductByProfit, 
-      lessProductByProfit
+      lessProductByProfit,
+      cardData,
+      category,
+      summary,
+      revenueForecast
      }}>
       {children}
     </DataContext.Provider>

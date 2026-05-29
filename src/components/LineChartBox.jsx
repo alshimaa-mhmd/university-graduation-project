@@ -19,7 +19,7 @@ const LineChartBox = () => {
     }
 
   return (
-    <div className='w-157.25 flex flex-col bg-gray-500 gap-10 p-8 rounded-xl'>
+    <div className='w-157.25 flex flex-col bg-gray-50 gap-10 p-8 rounded-xl'>
         <div className='w-full flex items-center justify-between'>
            
             <div className='flex flex-col'>
@@ -32,10 +32,10 @@ const LineChartBox = () => {
             </div>
 
             <div className='flex items-center '>
-                <input type='radio' name='type' className={` mr-1 ${ chartType === 'revenue' ? 'text-[#004AC6]' : 'text-[#495C95]' } hover:text-[#004AC6] text-xs font-bold leading-4 rounded`} onClick={() => handleChartTypeChange('revenue')} />
+                <input type='radio' name='type' value = "revenue" defaultChecked  className={` mr-1 ${ chartType === 'revenue' ? 'text-[#004AC6]' : 'text-[#495C95]' } hover:text-[#004AC6] text-xs font-bold leading-4 rounded`} onClick={() => handleChartTypeChange('revenue')} />
                 <label className={` mr-2 ${ chartType === 'revenue' ? 'text-[#004AC6]' : 'text-[#495C95]' } hover:text-[#004AC6] text-xs font-bold leading-4 rounded`}> Revenue</label>
                
-                <input type='radio' name='type' className={`mr-1 ${ chartType === 'profit' ? 'text-[#004AC6]' : 'text-[#495C95]' } hover:text-[#004AC6] text-xs font-bold leading-4 rounded`} onClick={() => handleChartTypeChange('profit')} />
+                <input type='radio' name='type' value = "profit" className={`mr-1 ${ chartType === 'profit' ? 'text-[#004AC6]' : 'text-[#495C95]' } hover:text-[#004AC6] text-xs font-bold leading-4 rounded`} onClick={() => handleChartTypeChange('profit')} />
                 <label className={` ${ chartType === 'profit' ? 'text-[#004AC6]' : 'text-[#495C95]' } hover:text-[#004AC6] text-xs font-bold leading-4 rounded`}> Profit</label>
             </div>
 

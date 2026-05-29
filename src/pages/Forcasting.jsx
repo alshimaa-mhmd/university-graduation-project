@@ -9,12 +9,15 @@ import LineChart from '../components/charts/LineChart';
 import DataContext from '../context/DataContext'
 import InsightCard from '../components/InsightCard'
 import Empty from '../components/Empty'
+import DashedLineChart from '../components/charts/DahsedLineChart'
+import { CurrencyFormat } from '../CurrencyFormat'
 const Forcasting = () => {
   const outlier = useContext(DataContext)?.outlier;
   const recommendations = useContext(DataContext)?.recommendations ;
   const profitData = useContext(DataContext)?.profitOverTime?.data;
     const data = useContext(DataContext)?.data;
-
+  const summary = useContext(DataContext)?.summary;
+  const salesByRegion = useContext(DataContext)?.salesByRegion;
     // Check if data is empty
   if (!data || Object.keys(data).length === 0 || data.message) {
     return ( <div className='flex flex-col w-full h-full justify-center items-center'><Empty /></div> ) ;
@@ -45,13 +48,13 @@ const Forcasting = () => {
           </div>
         </div>
 
-       <LineChart data={profitData} datakey = "profit" />
+       <DashedLineChart />
 
       </div>
    {/* end chart section */}
    {/* start data quality & region section */}
 
-       <div className='flex flex-col gap-6  w-76'>
+       <div className='flex flex-col gap-6 items-center md:items-start w-full md:w-76'>
 {/* start Data quality */}
         <div className='flex items-center justify-between bg-gray-500 rounded-xl p-6 w-full h-30'>
           <div className='flex flex-col gap-1'>
@@ -76,9 +79,13 @@ const Forcasting = () => {
             <p className='text-[#434655] font-bold text-sm w-full text-center'>
               Global
             </p>
-            <div className='w-full flex justify-between items-center'>
-              <p>North America</p>
-              <p>100%</p>
+            <div className='w-full flex flex-col '>
+              {salesByRegion?.data?.map((region, index) => (
+                <div key={index} className='flex justify-between items-center gap-2'>
+                  <p>{region.region}</p>
+                  <p>{CurrencyFormat(region.revenue)}</p>
+                </div>
+              ))}
             </div> 
           </div>
        </div>
@@ -93,10 +100,10 @@ const Forcasting = () => {
         <img src={lamp} alt='lamp'/>
         <h3 className='text-black-500 font-bold'>Strategic Recommendation</h3>
       </div>
-      <div className='flex gap-6 items-center flex-wrap'>
+      <div className='flex gap-6 items-center justify-center md:justify-start flex-wrap'>
         {
           recommendations.map((recommendation, index) => (
-           <InsightCard key={index} title={"Focus on high-profit"} description={recommendation} index={index} CostumeWidth="304px"/>
+           <InsightCard key={index} title={""} description={recommendation} index={index} CostumeWidth="304px"/>
           ))
         }
       </div>
@@ -106,7 +113,7 @@ const Forcasting = () => {
   <div className='flex gap-6 bg-white rounded-xl p-4 border-l-4 border-l-[#004AC6]'>
     <img src={AIImage} alt='AI Summary' className='w-6 h-5' />
     <p className='font-bold'>
-      AI Summary: The profit over time chart indicates a steady increase in net margin performance across all sectors. The data quality section shows that outliers have been removed.
+      Summary : {summary}
     </p>
   </div> 
  
