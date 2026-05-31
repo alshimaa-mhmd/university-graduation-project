@@ -3,7 +3,7 @@ import DataContext from "./DataContext";
 // import sampleData from "../data/output (2).json";
 
 export default function DataProvider({ children }) {
-
+    const [jobId, setJobId] = useState(null);
 
     const [data, setData] = useState(null);
     // if data is error 
@@ -42,7 +42,9 @@ export default function DataProvider({ children }) {
       cardData,
       category,
       summary,
-      revenueForecast
+      revenueForecast,
+      jobId,
+      setJobId,
      }}>
       {children}
     </DataContext.Provider>

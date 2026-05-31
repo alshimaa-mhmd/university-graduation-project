@@ -1,10 +1,12 @@
 const COLUMNS = [
   { label: "Order ID",      type: "Numeric"  },
   { label: "Product name",  type: "Text"     },
+  { label: "Price",         type: "Numeric"     },
   { label: "Category",      type: "Text"     },
   { label: "Sales/Revenue", type: "Currency" },
   { label: "Profit",        type: "Currency" },
   { label: "Region",        type: "Text"     },
+  { label: "date",          type: "Date"     },
 ];
 
 export default function RequiredDataStructure({ onDownload }) {
@@ -19,17 +21,17 @@ export default function RequiredDataStructure({ onDownload }) {
             To ensure accurate analysis, please ensure your Excel or CSV file includes the following columns:
           </p>
         </div>
-        <button
-          onClick={onDownload}
-          className="flex items-center gap-2 px-4 py-2 border-2 border-[#1152D4] text-[#1152D4] text-xs font-semibold rounded-lg hover:bg-[#EEF3FF] transition-colors shrink-0"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download template
-        </button>
+            <a  href="/structuredData.csv"
+        download="template.csv"
+        className="flex items-center gap-2 px-4 py-2 border-2 border-[#1152D4] text-[#1152D4] text-xs font-semibold rounded-lg hover:bg-[#EEF3FF] transition-colors shrink-0"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download template
+      </a>
       </div>
 
       {/* Columns grid */}

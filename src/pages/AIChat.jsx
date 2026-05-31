@@ -48,7 +48,6 @@ export default function AIChat({ jobId }) {
       setLoading(false);
     }
   };
-
   return (
     <div className="w-full p-8">
     <div style={styles.container}>

@@ -26,7 +26,7 @@ const Forcasting = () => {
 
   return (
     <>
-    <div className='p-8 flex flex-col gap-10'>
+    <div className='p-8 flex flex-col gap-10' id='forecast'>
   {/* start top section */}
     <div className='flex gap-8 flex-wrap items-start'>
   {/* start chart section */} 

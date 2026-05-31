@@ -10,6 +10,8 @@ import NavProvider from '../context/NavProvider';
 import NavContext from '../context/NavContext';
 import { useContext } from 'react';
 import AIChat from './AIChat';
+import DataContext, {JobContext} from '../context/DataContext'
+
 
 // 👇 Split into two components so the consumer is always INSIDE the provider
 function HomePageContent({ token }) {
@@ -32,8 +34,10 @@ useEffect(() => {
     window.removeEventListener("popstate", handleBackButton);
   };
 }, []);
+
+const { jobId } = useContext(DataContext); // ✅ now inside JobContext
   return (
-    <div className='bg-[#E2E8F0] flex'>
+    <div className='bg-[#E2E8F0] flex' id='dashboard'>
       <SideNavBar token={token} />         {/* ✅ no need to pass navLink/setNavLink */}
       <div className='flex flex-col gap-6 w-full'>
         <TopNavBar link={navLink} />
@@ -42,7 +46,7 @@ useEffect(() => {
         {navLink === 'upload hub'         && <DataUpload />}
         {navLink === 'product deep dive'  && <Reports />}
         {navLink === 'sales trends'       && <Forcasting />}
-        {navLink === 'AI Agent'           && <AIChat jobId={"12f07ae0-3710-4eae-8bc5-5b443b813f2a"}/>}
+        {navLink === 'AI Agent'           && <AIChat jobId={jobId}/>}
       </div>
     </div>
   );

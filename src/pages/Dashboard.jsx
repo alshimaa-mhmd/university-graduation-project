@@ -41,7 +41,7 @@ const Dashboard = () => {
   return (
    
     
-    <div className='p-8 flex flex-col gap-10'>
+    <div className='p-8 flex flex-col gap-10' id='overview'>
     <div className='w-full flex items-center justify-center md:justify-start flex-wrap gap-6'>
       {
         cardData.filter( card => card.format !== "text").map((card, index) => (

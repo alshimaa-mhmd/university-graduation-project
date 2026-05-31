@@ -11,7 +11,7 @@ import RequiredDataStructure from '../components/RequiredDataStructure';
 const DataUpload = () => {
 
   const [refreshKey, setRefreshKey] = useState(0);
-  const { errorMsg, setData } = useContext(DataContext);
+  const { errorMsg, setData, setJobId } = useContext(DataContext);
   const { setNavLink } = useContext(NavContext);
   const abortControllerRef = useRef(null);
   const [errMsg, setErrMsg] = useState(false);
@@ -20,15 +20,19 @@ const DataUpload = () => {
     
     if (record.status === "completed") {
       const resultData = await fetchResult(record.id); // fetches from result table
-      setData(resultData);                             // 👈 populates all charts/cards
-      // then navigate to your insights page, e.g.:
+      setData(resultData);     // 👈 populates all charts/cards
+      setJobId(record.id);     // 👈 sets the job ID
+      // then navigate to your insights page
       setNavLink('overview')
     }
     if (record.status === "failed") {
       const resultData = await fetchResult(record.id); // fetches from result table
-      setData(resultData);                             // 👈 populates all charts/cards
-      
+      setData(resultData);                            
       setErrMsg(true);
+    }
+    if (record.status === "pending") {
+      record.status == "failed"
+      
     }
   };
 
@@ -49,7 +53,7 @@ const DataUpload = () => {
       setLoading={setLoading}
       />
 
-      <RequiredDataStructure onDownload={() => {}} />
+      <RequiredDataStructure onDownload={()=>{}} />
 
       <RecentUploads 
       refreshKey={refreshKey} 
