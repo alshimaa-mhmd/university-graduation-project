@@ -1,6 +1,6 @@
 import {supabase} from './client';  // adjust path as needed
 
-const FASTAPI_URL = "http://127.0.0.1:8000"; // your deployed FastAPI
+const FASTAPI_URL = "https://velox-python-code.vercel.app"; // your deployed FastAPI
 
 export const triggerAnalysis = async (jobId, signal) => {
   const res = await fetch(`${FASTAPI_URL}/analyze/${jobId}`, { method: "POST",  signal });

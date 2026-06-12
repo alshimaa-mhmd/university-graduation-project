@@ -110,12 +110,12 @@ const Forcasting = () => {
     </div>
  
  {/* AI summary */}
-  <div className='flex gap-6 bg-white rounded-xl p-4 border-l-4 border-l-[#004AC6]'>
+  {/* <div className='flex gap-6 bg-white rounded-xl p-4 border-l-4 border-l-[#004AC6]'>
     <img src={AIImage} alt='AI Summary' className='w-6 h-5' />
     <p className='font-bold'>
       Summary : {summary}
     </p>
-  </div> 
+  </div>  */}
  
  </div> 
 </>    
