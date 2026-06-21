@@ -15,7 +15,7 @@ const LandingNav = () => {
         {/* Logo */}
         <img src={veloxicon} alt="Velox" className="w-32 h-8" />
       </div>
-      <button className="bg-black text-white  font-bold cursor-pointer px-2 py-2 hover:bg-black/80 transition-colors rounded-3xl" onClick={scrollToDemo}>
+      <button className="bg-[#1457CF] text-white  font-bold cursor-pointer px-2 py-2 hover:bg-[#1457CF]/80 transition-colors rounded-3xl" onClick={scrollToDemo}>
         Get a Demo →
       </button>
     </nav>

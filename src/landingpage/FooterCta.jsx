@@ -35,7 +35,7 @@ function FooterCta() {
             <a key={l} className="hover:text-white transition-colors cursor-pointer">{l}</a>
           ))}
         </div>
-        <p>© 2025 Mixpanel, Inc. All rights reserved.</p>
+        <p>© 2025 Velox, Inc. All rights reserved.</p>
       </footer>
     </section>
    

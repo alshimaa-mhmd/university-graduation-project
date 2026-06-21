@@ -12,6 +12,11 @@ function SignUp() {
     email: "",
     password: ""
   })
+    const [showPassword, setShowPassword] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(false)
+
+  const strength = getPasswordStrength(formData.password);
   function handleChange(event) {
     setFormData( (prevFormData) => {
       return{
@@ -25,6 +30,7 @@ function SignUp() {
 
   async function handleSubmit(e){
     e.preventDefault()
+    setLoading(true)
 
   try{
     const { data, error } = await supabase.auth.signUp(
@@ -45,6 +51,8 @@ if(error){
 alert("check your email for the confirmation link")
   } catch(e){
     alert(e.message)
+  }finally {
+    setLoading(false)
   }
 
 }
@@ -90,10 +98,7 @@ function getPasswordStrength(password) {
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [agreed, setAgreed] = useState(false);
 
-  const strength = getPasswordStrength(formData.password);
 
   return (
     <div
@@ -261,8 +266,19 @@ function getPasswordStrength(password) {
           </div>
 
           {/* Submit */}
-          <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-3 rounded-xl text-sm transition-colors shadow-md shadow-blue-200">
-            Create Account
+          <button type="submit" 
+              className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-400 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl text-sm transition-colors shadow-md shadow-blue-200 flex items-center justify-center gap-2">
+            {loading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                  </svg>
+                  Signing In...
+                </>
+              ) : (
+                "Create Account"
+              )}
           </button>
 
           {/* Divider */}

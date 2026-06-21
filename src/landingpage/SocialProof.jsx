@@ -2,7 +2,7 @@ const testimonials = [
   {
     stat: "31%",
     label: "conversion rate",
-    quote: "Mixpanel allowed us to quickly measure and pivot as needed, leading to a 31% conversion ratio improvement.",
+    quote: "Velox allowed us to quickly measure and pivot as needed, leading to a 31% conversion ratio improvement.",
     author: "Brennan Clark",
     role: "Director of Product",
     company: "SAGO",
@@ -10,14 +10,14 @@ const testimonials = [
   {
     stat: "80%",
     label: "subscriber growth",
-    quote: "Mixpanel helps us see friction points, where users come from, etc. We doubled conversions & retain customers longer.",
+    quote: "Velox helps us see raising products, where users come from, etc. We doubled sales & retain customers longer.",
     author: "Bradley Allen",
     role: "Product Manager",
     company: "lula",
   },
   {
     stat: "2x",
-    label: "growth in conversion rate",
+    label: "growth in sales rate",
     quote: "Insights that once required SQL now take minutes; we improve retention, conversion, and lift revenue.",
     author: "Brandon Green",
     role: "Staff Product Manager",
@@ -26,7 +26,7 @@ const testimonials = [
   {
     stat: "25%",
     label: "lift in conversion",
-    quote: "We make decisions in minutes now instead of weeks. Mixpanel surfaces what's working before it becomes obvious.",
+    quote: "We make decisions in minutes now instead of weeks. Velox surfaces what's working before it becomes obvious.",
     author: "Maya Torres",
     role: "Head of Growth",
     company: "fintech co.",
@@ -47,7 +47,7 @@ function SocialProof() {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-6 mb-12">
           <div>
-            <h2 className="md:text-4xl md:w-[70%] text-3xl  w-full font-extrabold text-[#1a1a2e]">Companies choose Mixpanel for faster, easier analytics</h2>
+            <h2 className="md:text-4xl md:w-[70%] text-3xl  w-full font-extrabold text-[#1a1a2e]">Companies choose Velox for faster, easier analytics</h2>
           </div>
           
         </div>

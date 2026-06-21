@@ -12,7 +12,7 @@ const Hero = () => {
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#7856FF] mb-4 bg-[#ede9ff] px-3 py-1 rounded-full">
             Product Analytics
           </span>
-          <h1 className=" text-3xl md:text-6xl text-center font-extrabold text-[#1a1a2e] leading-20 md:leading-32 mb-6"> Analytics that drive decisions </h1>
+          <h1 className=" text-3xl md:text-6xl text-center font-extrabold text-[#1457CF] leading-20 md:leading-32 mb-6"> Analytics that drive decisions </h1>
           <h4 className="text-center text-lg font-medium text-[#1a1a2e] leading-tight mb-6">
             Turn product data into confident decisions teams can act on
           </h4>
@@ -28,8 +28,8 @@ const Hero = () => {
           </p>
           <ul className=" text-gray-700 space-y-2 mb-6">
             {[
-              ["See what drives growth", "Track usage, adoption, drop-offs, and retention with charts, funnels, and cohorts."],
-              ["Prove what works", "Run experiments to test real business outcomes, test features, flows, and layouts — then measure impact with confidence."],
+              ["See what drives growth", "Track sales, adoption, drop-offs, and retention with charts, funnels, and cohorts."],
+              ["Prove what works", "Run experiments to test real business outcomes, explore products, flows, and outliers — then measure impact with confidence."],
               ["Confident insights at scale", "Understand what's driving behavior with AI, trusted metrics dashboards, centralized event values, and no-surprise costs."],
             ].map(([bold, text]) => (
               <li key={bold} className="flex gap-2">
@@ -38,7 +38,7 @@ const Hero = () => {
               </li>
             ))}
           </ul>
-          <p className="text-gray-600 mb-6">Trusted by 200,000+ leading companies</p>
+          <p className="text-gray-600 mb-6">Trusted by 200+ small and medium-sized companies</p>
           {/* Logo strip */}
          {/* <InfiniteMarquee /> */}
         </div>

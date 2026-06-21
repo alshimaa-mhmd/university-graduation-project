@@ -6,7 +6,7 @@ import DataContext from '../context/DataContext';
 import { useContext } from 'react';
 
 const TopNavBar = ({ link }) => {
-const {data, cardData, Insights, recommendations, salesByRegion, topProductsByProfit, bottomProductsByProfit, category, summary, outlier } = useContext(DataContext);
+const {data, cardData, Insights, recommendations, salesByRegion, topProductsByProfit, bottomProductsByProfit, category, summary, outlier, duplicates, score } = useContext(DataContext);
 
 const exportPDF = () => {
   if(!data || Object.keys(data).length === 0 || data.message) return;
@@ -140,14 +140,14 @@ const exportPDF = () => {
   if (Insights?.length) {
     sectionTitle("Key Insights");
 
-    Insights.forEach((insight) => {
+    Insights.map((insight) => {
       checkPageBreak(12);
       pdf.setFillColor(17, 82, 212);
       pdf.circle(margin + 2, y + 3, 1.2, "F");
       pdf.setFont("helvetica", "normal");
       pdf.setFontSize(9);
       pdf.setTextColor(50, 50, 70);
-      const lines = pdf.splitTextToSize(String(insight), contentWidth - 10);
+      const lines = pdf.splitTextToSize(String(insight.insight), contentWidth - 10);
       pdf.text(lines, margin + 7, y + 5);
       y += lines.length * 5 + 4;
     });
@@ -318,9 +318,9 @@ const exportPDF = () => {
     sectionTitle("Data Quality Report");
 
     const items = [
-      { label: "Outliers Detected", value: outlier.outliersRemoved ?? outlier.anomaliesDetected ?? "N/A" },
-      { label: "Duplicates Removed", value: outlier.duplicatesRemoved ?? "N/A" },
-      { label: "Data Quality Score", value: outlier.score ?? `${100 - (outlier.missingPercentage ?? 0)}%` },
+      { label: "Outliers Detected", value: outlier ?? "N/A" },
+      { label: "Duplicates Removed", value: duplicates ?? "N/A" },
+      { label: "Data Quality Score", value: score ?? `${100 - (outlier.missingPercentage ?? 0)}%` },
     ];
 
     items.forEach((item) => {

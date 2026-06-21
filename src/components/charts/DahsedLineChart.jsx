@@ -25,7 +25,7 @@ export default function DashedLineChart() {
       <YAxis width="auto"  />
       <Tooltip
         cursor={{ stroke : "#004AC6" }}
-        contentStyle={{ backgroundColor: '#8884d8', borderColor: '#004AC6' }}
+        contentStyle={{ backgroundColor: '#fff', borderColor: '#004AC6' }}
       />
       <Legend />
       <Line

@@ -10,6 +10,8 @@ export default function DataProvider({ children }) {
     const errorMsg = data?.message;
 
     const outlier = data?.dataQuality?.anomaliesDetected;
+    const duplicates = data?.dataQuality?.duplicatesRemoved;
+    const score = data?.dataQuality?.score;
     const cardData = data?.cards;
     const recommendations = data?.recommendations_plan?.actions;
     const Insights = data?.insights_analysis?.data;
@@ -45,6 +47,8 @@ export default function DataProvider({ children }) {
       revenueForecast,
       jobId,
       setJobId,
+      duplicates,
+      score,
      }}>
       {children}
     </DataContext.Provider>

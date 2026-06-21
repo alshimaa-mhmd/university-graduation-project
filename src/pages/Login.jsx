@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { supabase } from "../client" ;
 import { Link,  useNavigate } from "react-router-dom";
-// import loginBG from "../assets/loginbg.png"
-// import rightImg from "../assets/contact-sales-illo.webp"
-// import rightImg from "../assets/collaboration@2x.png"
 import veloxicon from '../assets/veloxicon.png'
 
 
 function Login( {setToken} ) {
- let navigate = useNavigate();
+  let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -24,63 +23,27 @@ function Login( {setToken} ) {
 
   console.log(formData)
 
-  async function handleSubmit(e){
-    e.preventDefault()
+ async function handleSubmit(e){
+  e.preventDefault()
+  setLoading(true)
 
   try{
     const { data, error } = await supabase.auth.signInWithPassword({
-  email: formData.email,
-  password: formData.password,
-})
-if(error){
-  throw error
-}
-console.log(data)
-setToken(data)
-navigate("/homepage")
-
-
-// alert("check your email for the confirmation link")
+      email: formData.email,
+      password: formData.password,
+    })
+    if(error){
+      throw error
+    }
+    console.log(data)
+    setToken(data)
+    navigate("/homepage")
   } catch(error){
     alert(error.message)
+  } finally {
+    setLoading(false)
   }
-
 }
-
-
- 
-
-const GoogleIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
-    <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
-    <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
-    <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
-  </svg>
-);
-
-const MicrosoftIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <rect x="0" y="0" width="8.5" height="8.5" fill="#F25022"/>
-    <rect x="9.5" y="0" width="8.5" height="8.5" fill="#7FBA00"/>
-    <rect x="0" y="9.5" width="8.5" height="8.5" fill="#00A4EF"/>
-    <rect x="9.5" y="9.5" width="8.5" height="8.5" fill="#FFB900"/>
-  </svg>
-);
-
-const VeloxLogo = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-    <path d="M4 6 L14 2 L24 6 L14 22 Z" fill="#1D4ED8" opacity="0.9"/>
-    <path d="M4 6 L14 10 L14 22 Z" fill="#1D4ED8" opacity="0.5"/>
-    <path d="M24 6 L14 10 L14 22 Z" fill="#1D4ED8" opacity="0.7"/>
-  </svg>
-);
-
-// const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  // const [remember, setRemember] = useState(false);
-
   
 return (
     <div className="min-h-screen w-full flex font-sans" style={{ fontFamily: "'DM Sans', 'Segoe UI', sans-serif" }}>
@@ -207,12 +170,23 @@ return (
               </div>
             </div>
 
-            {/* Remember me */}
-            
-
             {/* Submit */}
-            <button onSubmit={handleSubmit} className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-3 rounded-xl text-sm transition-colors shadow-md shadow-blue-200">
-              Sign In to Dashboard
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-400 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl text-sm transition-colors shadow-md shadow-blue-200 flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                  </svg>
+                  Signing In...
+                </>
+              ) : (
+                "Sign In to Dashboard"
+              )}
             </button>
           </div>
         </form>
@@ -228,26 +202,5 @@ return (
     </div>
   );
 }
-    // <div style={{ backgroundImage: `url(${loginBG})` }} className=" min-h-screen bg-cover  flex-wrap flex items-center justify-center gap-5">
-    //   <div className="flex flex-col items-center justify-center gap-5">
-    //     <img src={veloxicon} className="w-69 mb-12" />
-    //   <h1 className="text-3xl font-bold">Login to your account</h1>
-
-    //   <hr className="h-2  border-black/20 w-[180px] md:w-[433px]" /> 
-    //   <form onSubmit={handleSubmit} className="w-[300px] md:max-w-[433px] flex flex-col gap-5 w-full">
-    //     <label htmlFor="email" className="text-lg font-semibold">Email</label>
-    //     <input name="email" placeholder="e.g user@example.com" type="email" onChange={handleChange}  className="w-full border-1 border-[#eae6e7] rounded-[96px] cursor-pointer text-[1rem] min-h-[52px] py-3.5 px-6 text-black"/> 
-    //     <label htmlFor="password" className="text-lg font-semibold">Password</label>
-    //     <input name="password" placeholder="password" type="password" onChange={handleChange}  className="w-full border-1 border-[#eae6e7] rounded-[96px] cursor-pointer text-[1rem] min-h-[52px] py-3.5 px-6 text-black"/> 
-        
-    //     <button type="submit" className="w-full bg-[#7C5BFF] hover:bg-[#7856ff]/80 rounded-[96px] cursor-pointer text-[1rem] min-h-[52px] py-3.5 px-6 text-white text-center" >
-    //       Continue
-    //     </button>
-    //   </form>
-    //   <div>Don't have an account ? <Link to="/signup" className="text-[#7C5BFF] hover:underline font-semibold">Sign Up</Link></div>
-    // </div>
-
-    // {/* <img src={rightImg} className="max-h-screen"/> */}
-    // </div>
 
 export default Login
