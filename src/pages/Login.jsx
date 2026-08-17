@@ -21,8 +21,6 @@ function Login( {setToken} ) {
     })    
   }
 
-  console.log(formData)
-
  async function handleSubmit(e){
   e.preventDefault()
   setLoading(true)
@@ -35,7 +33,7 @@ function Login( {setToken} ) {
     if(error){
       throw error
     }
-    console.log(data)
+ 
     setToken(data)
     navigate("/homepage")
   } catch(error){

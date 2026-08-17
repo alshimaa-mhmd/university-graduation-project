@@ -13,9 +13,9 @@ import AIChat from './AIChat';
 import DataContext, {JobContext} from '../context/DataContext'
 
 
-// 👇 Split into two components so the consumer is always INSIDE the provider
+//  Split into two components so the consumer is always INSIDE the provider
 function HomePageContent({ token }) {
-  const { navLink, setNavLink } = useContext(NavContext); // ✅ now inside NavProvider
+  const { navLink, setNavLink } = useContext(NavContext); // now inside NavProvider
 useEffect(() => {
   window.scrollTo(0, 0);
 }, [navLink]); // ← runs every time activeTab changes
@@ -35,10 +35,10 @@ useEffect(() => {
   };
 }, []);
 
-const { jobId } = useContext(DataContext); // ✅ now inside JobContext
+const { jobId } = useContext(DataContext); //  now inside JobContext
   return (
     <div className='bg-[#E2E8F0] flex' id='dashboard'>
-      <SideNavBar token={token} />         {/* ✅ no need to pass navLink/setNavLink */}
+      <SideNavBar token={token} />         {/*  no need to pass navLink/setNavLink */}
       <div className='flex flex-col gap-6 w-full'>
         <TopNavBar link={navLink} />
 
@@ -56,7 +56,7 @@ export default function HomePage({ token }) {
   return (
     <DataProvider>
       <NavProvider>
-        <HomePageContent token={token} />  {/* ✅ consumed inside the providers */}
+        <HomePageContent token={token} />  {/*  consumed inside the providers */}
       </NavProvider>
     </DataProvider>
   );

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import DataContext from "./DataContext";
-// import sampleData from "../data/output (2).json";
 
 export default function DataProvider({ children }) {
     const [jobId, setJobId] = useState(null);

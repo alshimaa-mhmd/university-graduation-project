@@ -116,18 +116,9 @@ const ActionButton = ({ status, onAction , abortControllerRef }) => {
 };
 
 // ── Sample data ── replace with your dynamic source
-const SAMPLE_DATA = [
-  {
-    id: 1,
-    name: "Q3_Sales_Performance.csv",
-    dateUploaded: "Oct 24, 2023 • 14:20",
-    fileSize: "1.2 MB",
-    status: "Processed",
-  },
-];
 
 export default function RecentUploads({
-  records = SAMPLE_DATA,
+  records ,
   totalRecords = 24,
   currentPage = 1,
   pageSize = 4,
@@ -139,7 +130,8 @@ export default function RecentUploads({
   refreshKey,
   abortControllerRef,
   loading,
-  setLoading
+  fetchErr,
+  setFetchErr,
 }) {
 
   const [jobs, setJobs] = useState([])
@@ -156,15 +148,16 @@ export default function RecentUploads({
         .select("*")
         .eq('user_id', user.id)
         .order("created_at", { ascending: false })
-        .abortSignal(controller.signal); // 👈 tie the request to the controller
+        .abortSignal(controller.signal); // tie the request to the controller
 
           if (error) throw error;
           
-              console.log('Fetched jobs:', job)
+              // console.log('Fetched jobs:', job)
               setJobs(job)
       } catch (err) {
-        if (err.name === "AbortError") return; // 👈 silently ignore aborted requests
-            console.error(err);   
+        if (err.message === "AbortError: signal is aborted without reason") return; // silently ignore aborted requests
+              
+        setFetchErr(err.message);
       }
           
     }
@@ -205,7 +198,7 @@ const formatDate = (isoString) => {
 
 
   const start = (currentPage - 1) * pageSize + 1;
-  const end = Math.min(start + records.length - 1, totalRecords);
+  const end = Math.min(start + records?.length - 1, totalRecords);
 
   return (
     <div className=" flex items-center justify-center font-sans">
@@ -280,6 +273,23 @@ const formatDate = (isoString) => {
                   </td>
                 </tr>
               ) } 
+              {
+                fetchErr && (
+                  <tr>
+                    <td colSpan="5" className="py-4 px-6 text-slate-500">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 5v4M8 11v.5" stroke="#A32D2D" strokeWidth="1.5" strokeLinecap="round"/>
+                            <circle cx="8" cy="8" r="6.5" stroke="#A32D2D" strokeWidth="1.5"/>
+                          </svg>
+                        </div>
+                          <p className="font-medium text-gray-800">{fetchErr}</p>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              }
                 {jobs.map((record) => (
                   <tr key={record.id} className="hover:bg-slate-50/60 transition-colors group">
                     {/* File Name */}

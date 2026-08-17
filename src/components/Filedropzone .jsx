@@ -10,7 +10,7 @@ const formatBytes = (bytes) => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;
 };
 
-export default function FileDropZone({ onFilesChange, onUploadSuccess, abortControllerRef, loading, setLoading }) {
+export default function FileDropZone({ onFilesChange, onUploadSuccess, abortControllerRef,setLoading,setFetchErr }) {
   const [files, setFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef(null);
@@ -93,7 +93,7 @@ const saveToDatabase = async (file, publicUrl) => {
       status: 'pending',
       user_id: user.id,
     })
-    .select("id")   // 👈 add this — returns the new row with its id
+    .select("id")   //  returns the new row with its id
     .single();
 
     if (error) throw error;
@@ -106,7 +106,9 @@ const uploadFile = async (file) => {
   const signal = abortControllerRef.current.signal;
   
   try {
+    
     setLoading(true);
+     setFetchErr("");
     // 1. Validate
     validateFile(file)
 
@@ -123,7 +125,7 @@ const uploadFile = async (file) => {
     // 4. Save URL to files table
    
 
-    const jobId = await saveToDatabase(file, publicUrl); // 👈 now has the id
+    const jobId = await saveToDatabase(file, publicUrl); //  now has the id
 
      // Check if cancelled between stages
     if (signal.aborted) return;
@@ -136,8 +138,13 @@ const uploadFile = async (file) => {
 
     setLoading(false);
   } catch (error) {
-    console.error('Upload failed:', error.message)
+    if (error.name === 'AbortError') return;
+     console.error('Upload failed:', error.message)
+    setFetchErr(error.message);
     setLoading(false);
+  }finally{
+    setLoading(false);
+   
   }
 }
 

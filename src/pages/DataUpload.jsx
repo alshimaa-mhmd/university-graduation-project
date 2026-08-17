@@ -16,12 +16,14 @@ const DataUpload = () => {
   const abortControllerRef = useRef(null);
   const [errMsg, setErrMsg] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [fetchErr, setFetchErr] = useState("");
   const handleAction = async (record) => {
     
     if (record.status === "completed") {
+
       const resultData = await fetchResult(record.id); // fetches from result table
-      setData(resultData);     // 👈 populates all charts/cards
-      setJobId(record.id);     // 👈 sets the job ID
+      setData(resultData);     //  populates all charts/cards
+      setJobId(record.id);     //  sets the job ID
       // then navigate to your insights page
       setNavLink('overview')
     }
@@ -49,8 +51,8 @@ const DataUpload = () => {
       onFilesChange={(files) => console.log(files)} 
       onUploadSuccess={() => setRefreshKey(k => k + 1)}
       abortControllerRef={abortControllerRef}
-      loading={loading}
-      setLoading={setLoading}
+      setLoading={setLoading} 
+      setFetchErr={setFetchErr}
       />
 
       <RequiredDataStructure onDownload={()=>{}} />
@@ -60,7 +62,8 @@ const DataUpload = () => {
       onAction={handleAction}
       abortControllerRef={abortControllerRef}
       loading={loading}
-      setLoading={setLoading}
+      fetchErr={fetchErr}
+      setFetchErr={setFetchErr}
       />
     </div>
   )
